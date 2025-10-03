@@ -10,11 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.minie_commerce.R;
 import com.example.minie_commerce.data.api.ApiClient;
-import com.example.minie_commerce.data.api.ApiService;
-import com.example.minie_commerce.data.models.User;
-import com.example.minie_commerce.data.response.LoginResponse;
-
-import java.io.IOException;
+import com.example.minie_commerce.data.api.UserApiService;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -36,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         btnRegister = findViewById(R.id.btnRegister);
 
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        UserApiService userApiService = ApiClient.getClient(null).create(UserApiService.class);
 
         btnRegister.setOnClickListener(v -> {
             String username = etUsername.getText().toString().trim();
@@ -48,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            apiService.register(username, password, email).enqueue(new Callback<ResponseBody>() {
+            userApiService.register(username, password, email).enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.isSuccessful()){
