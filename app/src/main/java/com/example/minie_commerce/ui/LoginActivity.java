@@ -14,7 +14,7 @@ import retrofit2.Response;
 
 import com.example.minie_commerce.R;
 import com.example.minie_commerce.data.api.ApiClient;
-import com.example.minie_commerce.data.api.ApiService;
+import com.example.minie_commerce.data.api.UserApiService;
 import com.example.minie_commerce.data.response.LoginResponse;
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Tạo implementation của interface ApiService từ cấu hình Retrofit.
         // Retrofit sẽ tự generate code để gửi request/nhận response dựa trên định nghĩa @POST, @GET trong ApiService.
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        UserApiService userApiService = ApiClient.getClient(null).create(UserApiService.class);
 
         btnLogin.setOnClickListener(v -> {
             String username = etUsername.getText().toString().trim();
@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             // Gọi API login bằng enqueue() - khuyến nghị dùng so với execute():
             // - enqueue() sẽ thực hiện request ở background thread (bất đồng bộ),
             //   không làm chặn hoặc gây treo giao diện (UI thread).
-            apiService.login(username, password).enqueue(new Callback<LoginResponse>() {
+            userApiService.login(username, password).enqueue(new Callback<LoginResponse>() {
                 // Xử lý khi nhận được phản hồi từ server (HTTP 200, 400, 500...) <=> kết nối thành công
                 // Call<LoginResponse> call: đại diện cho request API, trong TH này là login API
                 @Override

@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.annotationProcessor
+
 plugins {
     alias(libs.plugins.android.application)
 }
@@ -45,6 +47,12 @@ dependencies {
     // OkHttp (HTTP client, thường đi kèm với Retrofit)
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
+    // Add recycler view dependencies
+    implementation("androidx.recyclerview:recyclerview:1.4.0")
+
+    // Add Glide dependency
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
     implementation(libs.appcompat)
     implementation(libs.material)
