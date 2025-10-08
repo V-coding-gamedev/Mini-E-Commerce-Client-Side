@@ -26,7 +26,10 @@
         </activity>
 
         <!-- Thêm MainActivity vào manifest -->
-<!--        <activity android:name=".ui.MainActivity" />-->
+        <activity android:name=".ui.LoginActivity" />
+        <activity android:name=".ui.RegisterActivity" />
+        <activity android:name=".ui.ProductDetailActivity" />
+
     </application>
 
 </manifest>

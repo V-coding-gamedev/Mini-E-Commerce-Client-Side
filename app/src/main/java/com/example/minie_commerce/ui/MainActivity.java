@@ -1,31 +1,23 @@
 package com.example.minie_commerce.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.minie_commerce.R;
 import com.example.minie_commerce.data.api.ApiClient;
 import com.example.minie_commerce.data.api.ProductApiService;
 import com.example.minie_commerce.data.models.Product;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.minie_commerce.ui.adapter.ProductAdapter;
+import com.example.minie_commerce.ui.adapter.ProductItemClickListener;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
-import android.view.View;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.minie_commerce.databinding.ActivityMainBinding;
-
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,7 +27,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ProductItemClickListener {
+
+     private Toolbar toolbar;
+
+    List<Product> products = new ArrayList<Product>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        toolbar = findViewById(R.id.actionBar);
+        setSupportActionBar(toolbar);
 
         // 2 cột (tức là 2 element / 1 hàng)
         GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
         recyclerView.setLayoutManager(gridLayoutManager);
-
-        List<Product> products = new ArrayList<Product>();
 
         ProductApiService productApiService = ApiClient.getClient(null).create(ProductApiService.class);
 
@@ -59,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     products.clear();
                     products.addAll(response.body());
 
-                    recyclerView.setAdapter(new Adapter(MainActivity.this, products));
+                    recyclerView.setAdapter(new ProductAdapter(MainActivity.this, products, MainActivity.this));
                 }  else {
                     Log.e("API_ERROR", "Code: " + response.code() + ", Message: " + response.message());
                     try {
@@ -76,4 +72,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(MainActivity.this, ProductDetailActivity.class);
+
+        intent.putExtra("Name", products.get(position).getName());
+        intent.putExtra("description", products.get(position).getDescription());
+        intent.putExtra("price", products.get(position).getPrice());
+        intent.putExtra("image", products.get(position).getImage_url()); // chỉ là nháp; cần kiểm tra kỹ lại
+
+        startActivity(intent);
+
+        }
 }
