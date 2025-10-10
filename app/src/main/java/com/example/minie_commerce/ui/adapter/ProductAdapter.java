@@ -47,7 +47,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
                 .into(holder.productImageView);
         holder.productNameView.setText(products.get(position).getName());
         holder.productPriceView.setText(products.get(position).getPrice().toString());
-        holder.productDescriptionView.setText(products.get(position).getDescription());
+//        holder.productDescriptionView.setText(products.get(position).getDescription());
     }
 
     @Override

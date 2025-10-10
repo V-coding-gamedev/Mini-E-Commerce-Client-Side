@@ -29,7 +29,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements ProductItemClickListener {
 
-     private Toolbar toolbar;
+    private Toolbar toolbar;
 
     List<Product> products = new ArrayList<Product>();
 
@@ -77,12 +77,11 @@ public class MainActivity extends AppCompatActivity implements ProductItemClickL
     public void onItemClick(int position) {
         Intent intent = new Intent(MainActivity.this, ProductDetailActivity.class);
 
-        intent.putExtra("Name", products.get(position).getName());
+        intent.putExtra("name", products.get(position).getName());
         intent.putExtra("description", products.get(position).getDescription());
         intent.putExtra("price", products.get(position).getPrice());
-        intent.putExtra("image", products.get(position).getImage_url()); // chỉ là nháp; cần kiểm tra kỹ lại
+        intent.putExtra("image", products.get(position).getImage_url());
 
         startActivity(intent);
-
-        }
+    }
 }

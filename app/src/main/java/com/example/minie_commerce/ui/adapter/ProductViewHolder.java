@@ -19,7 +19,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
         productImageView = itemView.findViewById(R.id.productImage);
         productNameView = itemView.findViewById(R.id.productName);
         productPriceView = itemView.findViewById(R.id.productPrice);
-        productDescriptionView = itemView.findViewById(R.id.productDescription);
+//        productDescriptionView = itemView.findViewById(R.id.productDescription);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
