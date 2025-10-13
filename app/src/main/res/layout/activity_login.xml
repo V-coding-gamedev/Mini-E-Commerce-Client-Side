@@ -78,6 +78,7 @@
         android:textSize="14sp"
         android:textAlignment="center"
         android:id="@+id/signupText"
+
         android:textColor="@color/lavender"
         android:layout_marginBottom="20dp"/>
 

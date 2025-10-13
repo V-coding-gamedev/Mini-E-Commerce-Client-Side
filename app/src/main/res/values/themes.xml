@@ -1,8 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MiniECommerce" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.MiniECommerce" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+         <item name="colorPrimary">@color/lavender</item> <!-- colorPrimary: màu chính của app, dùng cho AppBar, Button, và các thành phần nổi bật -->
+        <item name="colorPrimaryVariant">@color/lavender</item>  <!-- colorPrimaryVariant: màu biến thể (thường đậm hơn) của colorPrimary, dùng cho status bar hoặc toolbar khi cuộn -->
+
     </style>
 
     <style name="Theme.MiniECommerce" parent="Base.Theme.MiniECommerce" />

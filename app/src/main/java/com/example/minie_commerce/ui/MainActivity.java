@@ -10,9 +10,12 @@ import com.example.minie_commerce.data.models.Product;
 import com.example.minie_commerce.ui.adapter.ProductAdapter;
 import com.example.minie_commerce.ui.adapter.ProductItemClickListener;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -29,8 +32,6 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements ProductItemClickListener {
 
-    private Toolbar toolbar;
-
     List<Product> products = new ArrayList<Product>();
 
     @Override
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements ProductItemClickL
         setContentView(R.layout.activity_main);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        toolbar = findViewById(R.id.actionBar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // 2 cột (tức là 2 element / 1 hàng)
@@ -71,6 +72,22 @@ public class MainActivity extends AppCompatActivity implements ProductItemClickL
                 Log.e("API_ERROR", "Failure: " + t.getMessage(), t);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // Kiểm tra xem item nào được nhấn dựa vào ID
+        if (item.getItemId() == R.id.shoppingCart){
+            startActivity(new Intent(MainActivity.this, ShoppingCartActivity.class));
+            return true; // Tôi đã xử lý xong cái giỏ hàng này rồi!
+        }
+        return super.onOptionsItemSelected(item); // Tôi sẽ chuyển nó lên cho cấp trên (hệ thống mặc định) xử lý.
     }
 
     @Override

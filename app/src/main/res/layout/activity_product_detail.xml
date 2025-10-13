@@ -7,7 +7,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/action_bar"/>
+<!--    <include layout="@layout/action_bar"/>-->
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"
+        android:background="@color/lavender"
+        app:title="E-Commerce"
+        app:titleMarginStart="5dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="25dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,7 +57,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="This is product description"
-        android:layout_marginTop="10dp"
         android:padding="20dp"
         android:textColor="@color/lavender"
         android:textSize="18sp"/>
@@ -53,7 +64,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:id="@+id/loginButton"
+        android:id="@+id/addToCartButton"
         android:text="Add to cart"
         android:textSize="18sp"
         android:layout_marginTop="30dp"

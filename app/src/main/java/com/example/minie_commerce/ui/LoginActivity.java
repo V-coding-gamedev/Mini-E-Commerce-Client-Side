@@ -3,8 +3,10 @@ package com.example.minie_commerce.ui;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText etUsername, etPassword;
     Button btnLogin;
+    TextView signUpText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        signUpText = findViewById(R.id.signupText);
 
         // Tạo implementation của interface ApiService từ cấu hình Retrofit.
         // Retrofit sẽ tự generate code để gửi request/nhận response dựa trên định nghĩa @POST, @GET trong ApiService.
@@ -71,5 +76,15 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         });
+
+        signUpText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }

@@ -7,13 +7,26 @@
     android:orientation="vertical"
     tools:context=".ui.MainActivity">
 
-    <include layout="@layout/action_bar"/>
+<!--    <include layout="@layout/action_bar"/>-->
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"
+        android:background="@color/lavender"
+        app:title="E-Commerce"
+        app:titleMarginStart="5dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="25dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recyclerview"
-        />
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:layout_marginTop="25dp"/>
 
 
 
