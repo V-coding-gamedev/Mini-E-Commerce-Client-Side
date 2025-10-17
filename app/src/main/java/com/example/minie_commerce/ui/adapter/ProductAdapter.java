@@ -27,8 +27,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
         this.productItemClickListener = productItemClickListener;
     }
 
-
-
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -47,11 +45,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
                 .into(holder.productImageView);
         holder.productNameView.setText(products.get(position).getName());
         holder.productPriceView.setText(products.get(position).getPrice().toString());
-//        holder.productDescriptionView.setText(products.get(position).getDescription());
+
+        // holder.productId.setText(convertLongToString(products.get(position).getId()));
     }
 
     @Override
     public int getItemCount() {
         return products.size();
+    }
+
+    public String convertLongToString(long id){
+        String productId = String.valueOf(id);
+        return productId;
     }
 }

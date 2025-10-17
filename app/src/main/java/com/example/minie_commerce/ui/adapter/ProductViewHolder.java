@@ -12,14 +12,15 @@ import com.example.minie_commerce.R;
 public class ProductViewHolder extends RecyclerView.ViewHolder {
 
     ImageView productImageView;
-    TextView productNameView, productPriceView,  productDescriptionView;
+    TextView productNameView, productPriceView;
+    TextView productId;
 
     public ProductViewHolder(@NonNull View itemView, ProductItemClickListener productItemClickListener) {
         super(itemView);
+        productId = itemView.findViewById(R.id.productId);
         productImageView = itemView.findViewById(R.id.productImage);
         productNameView = itemView.findViewById(R.id.productName);
         productPriceView = itemView.findViewById(R.id.productPrice);
-//        productDescriptionView = itemView.findViewById(R.id.productDescription);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override

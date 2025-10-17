@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements ProductItemClickL
         intent.putExtra("description", products.get(position).getDescription());
         intent.putExtra("price", products.get(position).getPrice());
         intent.putExtra("image", products.get(position).getImage_url());
+        intent.putExtra("productId", products.get(position).getId());
 
         startActivity(intent);
     }

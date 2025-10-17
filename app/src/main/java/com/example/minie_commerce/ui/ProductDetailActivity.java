@@ -1,6 +1,8 @@
 package com.example.minie_commerce.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +18,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.example.minie_commerce.R;
+import com.example.minie_commerce.data.api.ApiClient;
+import com.example.minie_commerce.data.api.CartApiService;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -48,12 +57,27 @@ public class ProductDetailActivity extends AppCompatActivity {
             Glide.with(this)
                     .load(imageUrl)
                     .into(detailImage);
-
         }
 
         addToCartBtn.setOnClickListener(v -> {
-            Toast.makeText(ProductDetailActivity.this, "Added to cart", Toast.LENGTH_SHORT).show();
+            SharedPreferences prefs = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+            String token = prefs.getString("token", null);
 
+            CartApiService cartApiService = ApiClient.getClient(token).create(CartApiService.class);
+
+            long productId = bundle.getLong("productId");
+            // Toast.makeText(ProductDetailActivity.this, "Added to cart", Toast.LENGTH_SHORT).show();
+            cartApiService.addToCart(1, productId, 1 ).enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    Toast.makeText(ProductDetailActivity.this, "Add to cart success", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Toast.makeText(ProductDetailActivity.this, "Add to cart failed", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
     }
 
