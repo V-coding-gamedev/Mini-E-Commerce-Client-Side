@@ -1,8 +1,10 @@
 package com.example.minie_commerce.data.api;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
-import com.example.minie_commerce.data.network.AuthInterceptor;
+import com.example.minie_commerce.data.network.*;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -10,18 +12,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     private static Retrofit retrofit;
+    private static final DynamicAuthInterceptor authInterceptor = new DynamicAuthInterceptor();
 
-    public static Retrofit getClient(@Nullable String token) {
-        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
-
-        // Nếu token khác null và không rỗng, mới add interceptor
-        if (token != null && !token.isEmpty()) {
-            clientBuilder.addInterceptor(new AuthInterceptor(token));
-        }
-
-        OkHttpClient client = clientBuilder.build();
+    public static Retrofit getClient() {
+//        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
+//
+//        // Nếu token khác null và không rỗng, mới add interceptor
+//        if (token != null && !token.isEmpty()) {
+//            clientBuilder.addInterceptor(new DynamicAuthInterceptor(token));
+//        }
+//
+//        OkHttpClient client = clientBuilder.build();
 
         if (retrofit == null) {
+            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(authInterceptor).build();
+
             // Khởi tạo Retrofit client để kết nối Android app với backend (Spring Boot)
             retrofit = new Retrofit.Builder()
                     // Đặt Base URL cho toàn bộ API.
@@ -37,5 +42,11 @@ public class ApiClient {
 
         return retrofit;
     }
+
+    public static void updateToken(String token){
+        authInterceptor.setToken(token);
+    }
+
+
 }
 

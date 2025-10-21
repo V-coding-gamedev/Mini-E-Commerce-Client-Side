@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements ProductItemClickL
         GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        ProductApiService productApiService = ApiClient.getClient(null).create(ProductApiService.class);
+        ProductApiService productApiService = ApiClient.getClient().create(ProductApiService.class);
 
         productApiService.getAllProducts().enqueue(new Callback<List<Product>>() {
             @Override

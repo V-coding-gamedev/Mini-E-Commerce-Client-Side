@@ -10,6 +10,6 @@ public interface CartApiService {
     @FormUrlEncoded
     @POST("addToCart")
     Call<ResponseBody> addToCart(@Field("userId") long userId,
-                                @Field("productId") long productId,
-                                @Field("quantity") long quantity);
+                                 @Field("productId") long productId,
+                                 @Field("quantity") long quantity);
 }

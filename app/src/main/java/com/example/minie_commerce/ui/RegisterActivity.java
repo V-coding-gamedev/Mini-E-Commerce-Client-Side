@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         btnRegister = findViewById(R.id.btnRegister);
 
-        UserApiService userApiService = ApiClient.getClient(null).create(UserApiService.class);
+        UserApiService userApiService = ApiClient.getClient().create(UserApiService.class);
 
         btnRegister.setOnClickListener(v -> {
             String username = etUsername.getText().toString().trim();

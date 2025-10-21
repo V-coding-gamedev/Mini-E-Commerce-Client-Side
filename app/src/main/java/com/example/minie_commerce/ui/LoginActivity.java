@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Tạo implementation của interface ApiService từ cấu hình Retrofit.
         // Retrofit sẽ tự generate code để gửi request/nhận response dựa trên định nghĩa @POST, @GET trong ApiService.
-        UserApiService userApiService = ApiClient.getClient(null).create(UserApiService.class);
+        UserApiService userApiService = ApiClient.getClient().create(UserApiService.class);
 
         btnLogin.setOnClickListener(v -> {
             String username = etUsername.getText().toString().trim();
@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                     // login thành công và có dữ liệu trả về
                     if (response.isSuccessful() && response.body() != null) {
                         String token = response.body().getJwtToken();
+                        ApiClient.updateToken(token);
 
                         // Lưu token vào SharedPreferences
                         SharedPreferences prefs = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);

@@ -61,13 +61,13 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         addToCartBtn.setOnClickListener(v -> {
             SharedPreferences prefs = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
-            String token = prefs.getString("token", null);
+            String jwtToken = prefs.getString("jwtToken", null);
 
-            CartApiService cartApiService = ApiClient.getClient(token).create(CartApiService.class);
+            CartApiService cartApiService = ApiClient.getClient().create(CartApiService.class);
 
             long productId = bundle.getLong("productId");
             // Toast.makeText(ProductDetailActivity.this, "Added to cart", Toast.LENGTH_SHORT).show();
-            cartApiService.addToCart(1, productId, 1 ).enqueue(new Callback<ResponseBody>() {
+            cartApiService.addToCart(11, productId, 1 ).enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     Toast.makeText(ProductDetailActivity.this, "Add to cart success", Toast.LENGTH_SHORT).show();
