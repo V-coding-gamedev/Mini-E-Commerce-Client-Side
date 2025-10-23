@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/toolbar"
         android:background="@color/lavender"
+
         app:title="E-Commerce"
         app:titleMarginStart="5dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"

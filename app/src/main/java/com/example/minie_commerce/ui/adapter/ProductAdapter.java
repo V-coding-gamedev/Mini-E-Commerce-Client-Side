@@ -13,7 +13,8 @@ import com.example.minie_commerce.data.models.Product;
 import java.util.List;
 
 import com.bumptech.glide.Glide;
-import com.example.minie_commerce.ui.MainActivity;
+import com.example.minie_commerce.ui.listener.ProductItemClickListener;
+import com.example.minie_commerce.ui.viewHolder.ProductViewHolder;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
@@ -35,7 +36,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
         // RecyclerView và LayoutManager sẽ tự quản lý việc add View này vào parent.
         // Nếu để true, item_view sẽ bị add 2 lần vào parent -> gây lỗi
         // "The specified child already has a parent".
-        return new ProductViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view, parent, false), productItemClickListener);
+        return new ProductViewHolder(LayoutInflater.from(context).inflate(R.layout.item_home_view, parent, false), productItemClickListener);
     }
 
     @Override
@@ -54,8 +55,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
         return products.size();
     }
 
-    public String convertLongToString(long id){
-        String productId = String.valueOf(id);
-        return productId;
-    }
+//    public String convertLongToString(long id){
+//        String productId = String.valueOf(id);
+//        return productId;
+//    }
 }

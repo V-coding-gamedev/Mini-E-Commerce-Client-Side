@@ -7,12 +7,24 @@
     android:orientation="vertical"
     tools:context=".ui.ShoppingCartActivity">
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello"
-        android:textSize="100dp"
-        android:textAlignment="center"
-        android:layout_gravity="center_horizontal|center_vertical"/>
+        android:id="@+id/shoppingCartToolbar"
+        android:background="@color/lavender"
+        app:title="E-Commerce"
+        app:titleMarginStart="5dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="25dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/shoppingCartRecyclerView"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:layout_marginTop="25dp"/>
+
 
 </LinearLayout>

@@ -3,7 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
+    <item
+        android:title="Back icon"
+        android:id="@+id/backIcon"
+        android:icon="@drawable/back_icon"
+        app:showAsAction="always"/>
 
     <item
         android:title="Shopping cart"
@@ -16,5 +20,7 @@
         android:id="@+id/search_item"
         android:icon="@drawable/search_items"
         app:showAsAction="ifRoom|collapseActionView"/>
+
+
 
 </menu>

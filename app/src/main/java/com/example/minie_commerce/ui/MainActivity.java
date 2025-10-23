@@ -8,7 +8,7 @@ import com.example.minie_commerce.data.api.ApiClient;
 import com.example.minie_commerce.data.api.ProductApiService;
 import com.example.minie_commerce.data.models.Product;
 import com.example.minie_commerce.ui.adapter.ProductAdapter;
-import com.example.minie_commerce.ui.adapter.ProductItemClickListener;
+import com.example.minie_commerce.ui.listener.ProductItemClickListener;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
