@@ -1,6 +1,7 @@
 package com.example.minie_commerce.ui.viewHolder;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,7 +15,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
 
     public ImageView productImageView;
     public TextView productNameView, productPriceView;
-    public TextView productId;
+
 
     public ProductViewHolder(@NonNull View itemView, ProductItemClickListener productItemClickListener) {
         super(itemView);

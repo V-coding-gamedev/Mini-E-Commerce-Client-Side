@@ -19,13 +19,6 @@
             android:layout_height="120dp"
             android:scaleType="centerCrop"/>
 
-<!--        <TextView-->
-<!--            android:id="@+id/productId"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Product ID"-->
-<!--            android:textStyle="bold"/>-->
-
         <TextView
             android:id="@+id/productName"
             android:layout_width="wrap_content"

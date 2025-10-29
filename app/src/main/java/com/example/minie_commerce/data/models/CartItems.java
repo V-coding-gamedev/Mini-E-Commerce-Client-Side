@@ -1,45 +1,56 @@
 package com.example.minie_commerce.data.models;
 
 import com.example.minie_commerce.ui.ProductDetailActivity;
+import com.google.gson.annotations.SerializedName;
 
 public class CartItems {
-    long id;
-    Cart cart;
-    Product product;
-    long quantity;
+    private Long productId;
+    private String name;
+    private double price;
+    private String imageUrl;
+    private long quantity;
 
     public CartItems() {
     }
 
-    public CartItems(long id, Cart cart, Product product, long quantity) {
-        this.id = id;
-        this.cart = cart;
-        this.product = product;
+    public CartItems(Long productId, String name, double price, String imageUrl, long quantity) {
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+        this.imageUrl = imageUrl;
         this.quantity = quantity;
     }
 
-    public long getId() {
-        return id;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
-    public Cart getCart() {
-        return cart;
+    public String getName() {
+        return name;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Product getProduct() {
-        return product;
+    public double getPrice() {
+        return price;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public long getQuantity() {

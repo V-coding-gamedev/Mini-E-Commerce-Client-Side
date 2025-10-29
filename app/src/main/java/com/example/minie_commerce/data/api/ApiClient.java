@@ -15,14 +15,6 @@ public class ApiClient {
     private static final DynamicAuthInterceptor authInterceptor = new DynamicAuthInterceptor();
 
     public static Retrofit getClient() {
-//        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
-//
-//        // Nếu token khác null và không rỗng, mới add interceptor
-//        if (token != null && !token.isEmpty()) {
-//            clientBuilder.addInterceptor(new DynamicAuthInterceptor(token));
-//        }
-//
-//        OkHttpClient client = clientBuilder.build();
 
         if (retrofit == null) {
             OkHttpClient client = new OkHttpClient.Builder().addInterceptor(authInterceptor).build();
@@ -32,7 +24,7 @@ public class ApiClient {
                     // Đặt Base URL cho toàn bộ API.
                     // Lưu ý: khi chạy trên Android Emulator, "localhost" sẽ trỏ vào chính Emulator,
                     // nên phải dùng "10.0.2.2" để truy cập server chạy trên máy thật (PC).
-                    .baseUrl("http://10.0.2.2:8080") // backend Spring Boot (nếu chạy local)
+                    .baseUrl("http://10.0.2.2:8080/") // backend Spring Boot (nếu chạy local)
                     .client(client)
                     // Thêm GsonConverterFactory để Retrofit tự động chuyển JSON <-> Object Java.
                     .addConverterFactory(GsonConverterFactory.create())
@@ -43,10 +35,9 @@ public class ApiClient {
         return retrofit;
     }
 
+    // Gán JWT Token vào ngay sau khi đăng nhập, để mọi chức năng khác tự động kiểm tra token
     public static void updateToken(String token){
         authInterceptor.setToken(token);
     }
-
-
 }
 

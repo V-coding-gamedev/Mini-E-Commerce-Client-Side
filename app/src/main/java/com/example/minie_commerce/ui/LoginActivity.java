@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -59,6 +60,24 @@ public class LoginActivity extends AppCompatActivity {
                         // Lưu token vào SharedPreferences
                         SharedPreferences prefs = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
                         prefs.edit().putString("jwtToken", token).apply();
+
+                        // Gọi tiếp API findByUsername (sau khi token đã có)
+                        userApiService.findByUsername(username).enqueue(new Callback<Long>() {
+                            @Override
+                            public void onResponse(Call<Long> call, Response<Long> response) {
+                                if (response.isSuccessful() && response.body() != null) {
+                                    Long userId = response.body();
+
+                                    SharedPreferences prefs = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
+                                    prefs.edit().putString("userId", userId.toString()).apply();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Long> call, Throwable t) {
+                                Toast.makeText(LoginActivity.this, "Error getting userId", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
                         Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
 

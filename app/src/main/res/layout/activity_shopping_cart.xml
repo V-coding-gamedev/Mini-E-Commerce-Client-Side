@@ -23,8 +23,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/shoppingCartRecyclerView"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
         android:layout_marginTop="25dp"/>
 
-
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginTop="370dp"
+        android:text="Make order"/>
 </LinearLayout>
