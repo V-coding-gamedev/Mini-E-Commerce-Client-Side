@@ -3,6 +3,7 @@ package com.example.minie_commerce.ui;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,6 +45,9 @@ public class ShoppingCartActivity extends AppCompatActivity {
         String userId = prefs.getString("userId", null);
 
         loadCartItems(Long.parseLong(userId));
+
+        Button btnOrder = findViewById(R.id.orderBtn);
+        btnOrder.setOnClickListener(v -> makeOrder());
     }
 
     private void loadCartItems(Long userId) {
@@ -54,16 +58,18 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     CartAdapter cartAdapter = new CartAdapter(ShoppingCartActivity.this, response.body());
                     recyclerView.setAdapter(cartAdapter);
                 } else {
-                    Toast.makeText(ShoppingCartActivity.this, "Không có sản phẩm trong giỏ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ShoppingCartActivity.this, "There are no items in your cart", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<CartItems>> call, Throwable t) {
-                Toast.makeText(ShoppingCartActivity.this, "Lỗi kết nối server", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ShoppingCartActivity.this, "Server connection error", Toast.LENGTH_SHORT).show();
             }
-
-
         });
+    }
+
+    private void makeOrder(){
+        Toast.makeText(ShoppingCartActivity.this, "Clicked order btn", Toast.LENGTH_SHORT).show();
     }
 }

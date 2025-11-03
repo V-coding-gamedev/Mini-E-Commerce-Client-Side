@@ -54,9 +54,4 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
     public int getItemCount() {
         return products.size();
     }
-
-//    public String convertLongToString(long id){
-//        String productId = String.valueOf(id);
-//        return productId;
-//    }
 }

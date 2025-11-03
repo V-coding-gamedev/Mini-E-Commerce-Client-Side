@@ -20,15 +20,17 @@
         android:layout_marginTop="25dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/shoppingCartRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_marginTop="25dp"/>
 
     <Button
+        android:id="@+id/orderBtn"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:layout_marginTop="370dp"
-        android:text="Make order"/>
+        android:layout_marginBottom="50dp"
+        android:text="Make order" />
 </LinearLayout>
