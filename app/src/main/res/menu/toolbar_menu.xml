@@ -10,16 +10,22 @@
         app:showAsAction="always"/>
 
     <item
+        android:title="View orders"
+        android:id="@+id/orderedItems"
+        android:icon="@drawable/order_items"
+        app:showAsAction="always"/>
+
+    <item
         android:title="Shopping cart"
         android:id="@+id/shoppingCart"
         android:icon="@drawable/shopping_cart"
         app:showAsAction="ifRoom"/>
 
-    <item
-        android:title="Search items"
-        android:id="@+id/search_item"
-        android:icon="@drawable/search_items"
-        app:showAsAction="ifRoom|collapseActionView"/>
+<!--    <item-->
+<!--        android:title="Search items"-->
+<!--        android:id="@+id/search_item"-->
+<!--        android:icon="@drawable/search_items"-->
+<!--        app:showAsAction="ifRoom|collapseActionView"/>-->
 
 
 

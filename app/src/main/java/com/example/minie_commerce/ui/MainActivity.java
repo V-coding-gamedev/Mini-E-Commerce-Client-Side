@@ -95,6 +95,10 @@ public class MainActivity extends AppCompatActivity implements ProductItemClickL
             startActivity(new Intent(this, ShoppingCartActivity.class));
             return true;
         }
+        else if (item.getItemId() == R.id.orderedItems){
+            startActivity(new Intent(this, OrderDetailActivity.class));
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

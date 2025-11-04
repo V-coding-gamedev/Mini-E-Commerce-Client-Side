@@ -70,6 +70,6 @@ public class ShoppingCartActivity extends AppCompatActivity {
     }
 
     private void makeOrder(){
-        Toast.makeText(ShoppingCartActivity.this, "Clicked order btn", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ShoppingCartActivity.this, "Order items successfully !", Toast.LENGTH_SHORT).show();
     }
 }

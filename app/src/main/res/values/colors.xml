@@ -4,5 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#fcba03</color>
     <color name="lavender">#8692f7</color>
+    <color name="status_processing_color">#FF9800</color>
+    <color name="status_paid_color">#4CAF50</color>
 
 </resources>
