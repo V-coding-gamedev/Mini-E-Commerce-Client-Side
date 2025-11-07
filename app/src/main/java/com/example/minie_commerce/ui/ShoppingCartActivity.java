@@ -3,6 +3,7 @@ package com.example.minie_commerce.ui;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.minie_commerce.R;
 import com.example.minie_commerce.data.api.ApiClient;
 import com.example.minie_commerce.data.api.CartApiService;
+import com.example.minie_commerce.data.api.OrderApiService;
 import com.example.minie_commerce.data.models.CartItems;
 import com.example.minie_commerce.ui.adapter.CartAdapter;
 
@@ -26,6 +28,8 @@ import retrofit2.Response;
 public class ShoppingCartActivity extends AppCompatActivity {
 
     CartApiService cartApiService;
+    private OrderApiService orderApiService;
+
     RecyclerView recyclerView;
 
     @Override
@@ -40,6 +44,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         cartApiService = ApiClient.getClient().create(CartApiService.class);
+        orderApiService = ApiClient.getClient().create(OrderApiService.class);
 
         SharedPreferences prefs = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
         String userId = prefs.getString("userId", null);
@@ -47,7 +52,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         loadCartItems(Long.parseLong(userId));
 
         Button btnOrder = findViewById(R.id.orderBtn);
-        btnOrder.setOnClickListener(v -> makeOrder());
+        btnOrder.setOnClickListener(v -> confirmOrder(Long.parseLong(userId)));
     }
 
     private void loadCartItems(Long userId) {
@@ -69,7 +74,38 @@ public class ShoppingCartActivity extends AppCompatActivity {
         });
     }
 
-    private void makeOrder(){
-        Toast.makeText(ShoppingCartActivity.this, "Order items successfully !", Toast.LENGTH_SHORT).show();
+    private void confirmOrder(Long userId){
+        orderApiService.getTotalOrderPriceAndConfirmOrder(userId).enqueue(new Callback<Double>() {
+            @Override
+            public void onResponse(Call<Double> call, Response<Double> response) {
+                if (response.isSuccessful() && response.body() != null){
+                    Double totalPrice = response.body();
+//                    totalAmountTextView.setText(String.format("%.2f", totalPrice));
+//                    grandTotalTextView.setText(String.format("%.2f", totalPrice));
+
+                    Toast.makeText(ShoppingCartActivity.this,
+                            "Total price: " + String.format("%.2f", totalPrice),
+                            Toast.LENGTH_SHORT).show();
+
+                } else {
+                    logApiError(response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Double> call, Throwable t) {
+                Log.e("API_ERROR", "Failure: " + t.getMessage(), t);
+            }
+        });
+    }
+
+    private void logApiError(Response<?> response) {
+        try {
+            Log.e("API_ERROR", "Code: " + response.code() + ", Message: " + response.message());
+            if (response.errorBody() != null)
+                Log.e("API_ERROR", "ErrorBody: " + response.errorBody().string());
+        } catch (Exception e) {
+            Log.e("API_ERROR", "Error reading errorBody", e);
+        }
     }
 }
