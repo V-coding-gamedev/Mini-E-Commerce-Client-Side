@@ -19,14 +19,14 @@ import com.bumptech.glide.Glide;
 import com.example.minie_commerce.R;
 import com.example.minie_commerce.data.api.ApiClient;
 import com.example.minie_commerce.data.api.CartApiService;
+import com.example.minie_commerce.ui.base.BaseActivity;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProductDetailActivity extends AppCompatActivity {
-
+public class ProductDetailActivity extends BaseActivity {
     private TextView detailTitle, detailDesc, detailPrice;
     private ImageView detailImage;
     private Button addToCartBtn;
@@ -97,20 +97,5 @@ public class ProductDetailActivity extends AppCompatActivity {
                         }
                     });
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.shoppingCart) {
-            startActivity(new Intent(this, ShoppingCartActivity.class));
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

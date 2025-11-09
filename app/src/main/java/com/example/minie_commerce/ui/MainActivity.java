@@ -18,6 +18,7 @@ import com.example.minie_commerce.data.api.ProductApiService;
 import com.example.minie_commerce.data.models.Product;
 import com.example.minie_commerce.ui.adapter.ProductAdapter;
 import com.example.minie_commerce.ui.listener.ProductItemClickListener;
+import com.example.minie_commerce.ui.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements ProductItemClickListener {
+public class MainActivity extends BaseActivity implements ProductItemClickListener {
 
     private RecyclerView recyclerView;
     private List<Product> products = new ArrayList<>();
@@ -81,25 +82,6 @@ public class MainActivity extends AppCompatActivity implements ProductItemClickL
         } catch (Exception e) {
             Log.e("API_ERROR", "Error reading errorBody", e);
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.shoppingCart) {
-            startActivity(new Intent(this, ShoppingCartActivity.class));
-            return true;
-        }
-        else if (item.getItemId() == R.id.orderedItems){
-            startActivity(new Intent(this, OrderDetailActivity.class));
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
