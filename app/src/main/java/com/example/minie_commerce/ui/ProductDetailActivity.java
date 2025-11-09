@@ -19,7 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.minie_commerce.R;
 import com.example.minie_commerce.data.api.ApiClient;
 import com.example.minie_commerce.data.api.CartApiService;
-import com.example.minie_commerce.ui.base.BaseActivity;
+import com.example.minie_commerce.ui.BaseActivity;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

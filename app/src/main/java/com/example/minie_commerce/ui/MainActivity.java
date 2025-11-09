@@ -18,7 +18,7 @@ import com.example.minie_commerce.data.api.ProductApiService;
 import com.example.minie_commerce.data.models.Product;
 import com.example.minie_commerce.ui.adapter.ProductAdapter;
 import com.example.minie_commerce.ui.listener.ProductItemClickListener;
-import com.example.minie_commerce.ui.base.BaseActivity;
+import com.example.minie_commerce.ui.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;

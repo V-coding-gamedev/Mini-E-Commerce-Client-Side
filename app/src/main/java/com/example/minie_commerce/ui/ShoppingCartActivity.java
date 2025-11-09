@@ -22,7 +22,7 @@ import com.example.minie_commerce.data.api.CartApiService;
 import com.example.minie_commerce.data.api.OrderApiService;
 import com.example.minie_commerce.data.models.CartItems;
 import com.example.minie_commerce.ui.adapter.CartAdapter;
-import com.example.minie_commerce.ui.base.BaseActivity;
+import com.example.minie_commerce.ui.BaseActivity;
 
 
 import java.util.List;

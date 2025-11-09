@@ -1,4 +1,4 @@
-package com.example.minie_commerce.ui.base;
+package com.example.minie_commerce.ui;
 
 import android.content.Intent;
 import android.view.Menu;
